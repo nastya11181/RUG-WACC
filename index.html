@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="mapsApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Uber for Bikes</title>
+<link rel="stylesheet" href="css/maps.css">
+<script src="js/shared/angular.min.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+  <script type="text/javascript" src="js/maps.js"></script>
+</head>
+<body>
+<div ng-controller="MapController">
+    <div id="map"></div>
+    <div id="repeat" ng-repeat="marker in markers | orderBy : 'title'">
+         
+    </div>
+</div>
+</body>
+</html>
