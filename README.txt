@@ -4,7 +4,8 @@ Prerequisites
 
 Run the nginx
  - go to the client directory
-	docker ng serve
+	ng new client
+	ng serve
  - go to  http://localhost:4200
  - go to the ng directory
 	docker build -t ng/client .
