@@ -11,8 +11,38 @@ export class GoogleMapsComponent implements OnInit {
 
   lat: number = 47;
   lng: number = 28.9;
+  zoom: number = 10;
+  draggable: boolean = true;
+
 
   ngOnInit() {
   }
 
+  clickedMarker(label: string, index: number){
+    console.log('clicked the marker ${label||index}')
+  }
+
+
+
+  markers: marker[] = [
+    {
+      lat: 47.0345,
+      lng: 29,
+      label: 'A',
+      draggable: true
+    },
+    {
+      lat: 46.982,
+      lng: 28.84476,
+      label: 'B',
+      draggable: false
+    }
+  ];
+}
+
+interface marker {
+  lat: number;
+  lng: number;
+  label: string;
+  draggable: boolean;
 }
