@@ -14,18 +14,24 @@ The page should open in the browser. If it doesn't happen, try "ng serve" and th
 Check that Docker works for that part
 	- docker build -t client:cl .
 	- docker run -p 80:4200 client:cl
-(That's the part where everything seems to work fine for me. However, I cannot see anything in the browser)	
+The page should appear in browser on localhost:80
+
+Now we have a prebuilt image for the client, we will use it in the next step
+If you skipped this step, edit the docker-compose.yml file:
+comment the line:
+  image: client:cl
+uncomment: 
+  build ./client
+	
+
+If everything works fine, go up to the ng/ directory
+	- docker-compose build
+	- docker-compose run 
+	
+
 
 	
-Run the nginx
- - go to the client directory
-	ng new client
-	ng serve
- - go to  http://localhost:4200
- - go to the ng directory
-	docker build -t ng/client .
-	docker run --rm -p 80:4200 ng/client
- - go to localhost or to the ipadres of your machine
+
 
 
 
