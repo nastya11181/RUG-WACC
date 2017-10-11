@@ -6,3 +6,8 @@
   padding: 3rem 1.5rem;
   text-align: center;
 }
+
+ sudo add-apt-repository \
+       "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+       loki \
+       stable

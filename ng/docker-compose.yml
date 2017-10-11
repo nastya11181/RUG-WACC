@@ -1,17 +1,26 @@
+# for now, it's version 2. with version 3, it'll be possible to enable swarm mode
 version: '2'
- 
+ # services are different containers that we have
 services:
- 
-  # Build the container using the client Dockerfile
+# Build the client container using the pre-built image / Dockerfile
   client:
-      build: ./client
- 
-  # Build the container using the nginx Dockerfile
+    image: client:cl 
+#      build: ./client
+    networks:
+      - webnet
+
+# Build the nginx container using the nginx Dockerfile
   nginx:
     build: ./nginx
-    # Map Nginx port 80 to the local machine's port 80
+# Map Nginx port 80 to the local machine's port 80
     ports:
       - "80:80"
-    # Link the client container so that Nginx will have access to it
+# Link the client container so that Nginx will have access to it
     links:
       - client
+    networks:
+      - webnet
+# default network
+networks:
+  webnet:
+
