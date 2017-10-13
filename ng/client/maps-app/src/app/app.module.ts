@@ -8,6 +8,8 @@ import { LoginModalComponent } from './login-modal/login-modal.component';
 
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { FormsModule } from '@angular/forms';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 
 const googleMapsCore = AgmCoreModule.forRoot({
@@ -21,12 +23,14 @@ const loginModalCore = ModalModule.forRoot();
     AppComponent,
     NavComponent,
     GoogleMapsComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
     googleMapsCore,
-    loginModalCore
+    loginModalCore,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
