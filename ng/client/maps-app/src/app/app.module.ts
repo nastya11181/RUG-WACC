@@ -10,6 +10,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
 
 
 const googleMapsCore = AgmCoreModule.forRoot({
@@ -24,7 +25,8 @@ const loginModalCore = ModalModule.forRoot();
     NavComponent,
     GoogleMapsComponent,
     LoginModalComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,

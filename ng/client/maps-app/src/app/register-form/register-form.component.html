@@ -1,0 +1,35 @@
+<div class="container">
+   <h1>Sign up</h1>
+     <form #myForm="ngForm" (ngSubmit) = "submitForm(myForm)">
+       <div class="form-group">
+         <label for="username">Username</label>
+         <input type="text" class="form-control" id="username" required [(ngModel)]="model.username" name="username">
+       </div>
+       <div class="form-group">
+         <label for="firstname">First Name</label>
+         <input type="text" class="form-control" id="firstname" required [(ngModel)]="model.firstname" name="firstname">
+       </div>
+       <div class="form-group">
+         <label for="lastname">Last Name</label>
+         <input type="text" class="form-control" id="lastname" required [(ngModel)]="model.lastname" name="lastname">
+       </div>
+       <div class="form-group">
+         <label for="email">Email</label>
+         <input type="text" class="form-control" id="email" required [(ngModel)]="model.email" name="email">
+       </div>
+       <div class="form-group">
+         <label for="password">Password</label>
+         <input type="password" class="form-control" id="password" required [(ngModel)]="model.password" name="password">
+       </div>
+       <div class="form-group">
+         <label for="confirmpassword">Confirm Password</label>
+         <input type="password" class="form-control" id="confirmpassword" required [(ngModel)]="model.confirmpassword" name="confirmpassword">
+       </div>
+       <button type="submit" class="btn btn-default">Submit</button>
+     </form>
+ </div>
+
+ <div>
+   <h2>Register model:</h2>
+   {{ currentCredentials }}
+ </div>
