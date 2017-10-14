@@ -16,10 +16,12 @@ export class RegisterFormComponent implements OnInit {
 
   ngOnInit() {
   }
+  submittedRegister = false;
 
   get currentCredentials() { return JSON.stringify(this.model); }
 
   submitForm(myForm:NgForm) {
+    this.submittedRegister = true;
  alert(JSON.stringify(myForm.value));
  }
 }
