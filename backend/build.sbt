@@ -20,3 +20,11 @@ libraryDependencies ++= Seq(
 libraryDependencies ++= Seq(
     "org.mongodb" % "mongodb-driver-rx" % "1.5.0"
 )
+libraryDependencies ++= Seq(
+	"javax.ejb" % "javax.ejb-api" % "3.2"
+)
+libraryDependencies ++= Seq(
+	"com.google.inject" % "guice" % "4.1.0"
+)
+
+routesGenerator := InjectedRoutesGenerator
