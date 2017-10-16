@@ -8,9 +8,19 @@ services:
     build: ./client
 
   nginx:
-    build: ./nginx
+#    build: ./nginx
+    image: nginx:alpine
     ports:
       - "80:80"
+    depends_on:
+      - play
+      - client
+    links:
+      - play
+      - client
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/nginx.conf
+
 	
   play:
     build: ./play
@@ -18,17 +28,14 @@ services:
     links:
       - mongodb
       - cassandradb
-      - nginx
     depends_on:
       - mongodb
       - cassandradb
-      - nginx
 #    ports:
 #      - 9000:9000	
 	  
   mongodb:
     image: mongo:latest
-    container_name: "mongodb"
     environment:
       - MONGO_DATA_DIR=/data/db
 #      - MONGO_LOG_DIR=/dev/null 
@@ -42,7 +49,7 @@ services:
     image: cassandra:latest
     volumes:
       - ./target/database/data:/var/lib/cassandra
-    container_name: "cassandradb"
+
 	
 	
   
