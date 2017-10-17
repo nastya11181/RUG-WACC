@@ -3,9 +3,9 @@ version: '2'
 
 services:
 
-  client:
-#    image: client:cl 
-    build: ./client
+#  client:
+#    image: client:cl
+    #build: ./client
 
   nginx:
 #    build: ./nginx
@@ -14,45 +14,38 @@ services:
       - "80:80"
     depends_on:
       - play
-      - client
+    #  - client
     links:
       - play
-      - client
+    #  - client
     volumes:
-      - ./nginx/default.conf:/etc/nginx/nginx.conf
+      - ./default.conf:/etc/nginx/nginx.conf
 
-	
+
   play:
-    build: ./play
-    #image: play:latest
+    #build: ./play
+    image: wacc_docker_play:1.0
     links:
       - mongodb
       - cassandradb
     depends_on:
       - mongodb
       - cassandradb
-#    ports:
-#      - 9000:9000	
-	  
+    ports:
+      - 9000:9000
+
   mongodb:
     image: mongo:latest
     environment:
       - MONGO_DATA_DIR=/data/db
-#      - MONGO_LOG_DIR=/dev/null 
+#      - MONGO_LOG_DIR=/dev/null
     volumes:
-      - ./data/db:/data/db
+      - /srv/mongo:/data/db
 #    ports:
-#      - 27017:27017	
+#      - 27017:27017
     #command: mongod --logpath=/dev/null
-	
+
   cassandradb:
     image: cassandra:latest
     volumes:
-      - ./target/database/data:/var/lib/cassandra
-
-	
-	
-  
-
-	
-
+      - /srv/cassandra:/var/lib/cassandra
