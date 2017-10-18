@@ -1,0 +1,51 @@
+# for now, it's version 2. with version 3, it'll be possible to enable swarm mode
+version: '2'
+
+services:
+
+#  client:
+#    image: client:cl
+    #build: ./client
+
+  nginx:
+#    build: ./nginx
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    depends_on:
+      - play
+    #  - client
+    links:
+      - play
+    #  - client
+    volumes:
+      - ./default.conf:/etc/nginx/nginx.conf
+
+
+  play:
+    #build: ./play
+    image: wacc_docker_play:1.0
+    links:
+      - mongodb
+      - cassandradb
+    depends_on:
+      - mongodb
+      - cassandradb
+    ports:
+      - 9000:9000
+
+  mongodb:
+    image: mongo:latest
+    environment:
+      - MONGO_DATA_DIR=/data/db
+#      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - /srv/mongo:/data/db
+#    ports:
+#      - 27017:27017
+    #command: mongod --logpath=/dev/null
+
+  cassandradb:
+    image: cassandra:latest
+    volumes:
+      - /srv/cassandra:/var/lib/cassandra
