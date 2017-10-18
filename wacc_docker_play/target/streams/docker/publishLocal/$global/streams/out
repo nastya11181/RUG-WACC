@@ -1,0 +1,26 @@
+[0m[[0mdebug[0m] [0mExecuting Native docker build --force-rm -t wacc_docker_play:1.0 .[0m
+[0m[[0mdebug[0m] [0mWorking directory C:\Users\thomc\Downloads\wacc_docker_play\target\docker\stage[0m
+[0m[[31merror[0m] [0mtime="2017-10-16T14:35:00+02:00" level=error msg="failed to dial gRPC: cannot connect to the Docker daemon. Is 'docker daemon' running on this host?: open //./pipe/docker_engine: The system cannot find the file specified." [0m
+[0m[[31merror[0m] [0mcontext canceled[0m
+java.lang.RuntimeException: Nonzero exit value: 1
+	at com.typesafe.sbt.packager.docker.DockerPlugin$.publishLocalDocker(DockerPlugin.scala:321)
+	at com.typesafe.sbt.packager.docker.DockerPlugin$$anonfun$projectSettings$22.apply(DockerPlugin.scala:117)
+	at com.typesafe.sbt.packager.docker.DockerPlugin$$anonfun$projectSettings$22.apply(DockerPlugin.scala:115)
+	at scala.Function1$$anonfun$compose$1.apply(Function1.scala:47)
+	at sbt.$tilde$greater$$anonfun$$u2219$1.apply(TypeFunctions.scala:40)
+	at sbt.std.Transform$$anon$4.work(System.scala:63)
+	at sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:228)
+	at sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:228)
+	at sbt.ErrorHandling$.wideConvert(ErrorHandling.scala:17)
+	at sbt.Execute.work(Execute.scala:237)
+	at sbt.Execute$$anonfun$submit$1.apply(Execute.scala:228)
+	at sbt.Execute$$anonfun$submit$1.apply(Execute.scala:228)
+	at sbt.ConcurrentRestrictions$$anon$4$$anonfun$1.apply(ConcurrentRestrictions.scala:159)
+	at sbt.CompletionService$$anon$2.call(CompletionService.scala:28)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[0m[[31merror[0m] [0m(docker:[31mpublishLocal[0m) Nonzero exit value: 1[0m
