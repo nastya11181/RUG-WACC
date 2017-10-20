@@ -13,6 +13,7 @@ export class LoginFormComponent implements OnInit {
   model = new LoginForm( '', '');
 
   constructor() { }
+
   ngOnInit() {
   }
 
@@ -21,7 +22,6 @@ export class LoginFormComponent implements OnInit {
   submitForm(myForm:NgForm) {
     this.submittedLogin = true;
   }
+
   get currentCredentials() { return JSON.stringify(this.model); }
-
-
 }
