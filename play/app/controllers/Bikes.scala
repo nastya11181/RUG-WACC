@@ -38,7 +38,8 @@ object Bikes extends Controller with MongoController {
   def create() = Action.async(parse.json) { request =>
     val coordJSON = request.body.\("coords")
     val coords = coordFormat.reads(coordJSON).get
-    val bike = Bike(Option(BSONObjectID.generate), coords) // create the bike
+    val status = true
+    val bike = Bike(Option(BSONObjectID.generate), coords, status) // create the bike
     collection.insert(bike).map(
       _ => Ok(Json.toJson(bike))) // return the created bike in a JSON
   }
@@ -56,11 +57,13 @@ object Bikes extends Controller with MongoController {
     val objectID = new BSONObjectID(id) // get the corresponding BSONObjectID
     val coordJSON = request.body.\("coords")
     val coords = coordFormat.reads(coordJSON).get
+
     val modifier = BSONDocument( // create the modifier bike
       "$set" -> BSONDocument(
-        "coords" -> coords))
+        "coords" -> coords,
+        "status" -> false))
     collection.update(BSONDocument("_id" -> objectID), modifier).map(
-      _ => Ok(Json.toJson(Bike(Option(objectID), coords)))) // return the modified bike in a JSON
+      _ => Ok(Json.toJson(Bike(Option(objectID), coords, false)))) // return the modified bike in a JSON
   }
 
   /** delete a bike for the given id */

@@ -1,5 +1,3 @@
-go to the play directory
-
 docker build -t "play:latest" .
 docker-compose build
 docker-compose up

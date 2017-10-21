@@ -11,11 +11,7 @@ POST     /api/bikes/new   	controllers.Bikes.create
 GET      /api/bikes/:id   	controllers.Bikes.show(id: String)
 POST     /api/bikes/:id   	controllers.Bikes.update(id: String)
 DELETE   /api/bikes/:id   	controllers.Bikes.delete(id: String)
-GET      /api/celebrities       controllers.Celebrities.index
-POST     /api/celebrities/new   controllers.Celebrities.create
-GET      /api/celebrities/:id   controllers.Celebrities.show(id: String)
-POST     /api/celebrities/:id   controllers.Celebrities.update(id: String)
-DELETE   /api/celebrities/:id   controllers.Celebrities.delete(id: String)
+
 
 
 # Map static resources from the /public folder to the /assets URL path

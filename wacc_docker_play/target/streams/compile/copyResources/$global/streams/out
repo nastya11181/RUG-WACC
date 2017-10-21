@@ -1,4 +1,0 @@
-[0m[[0mdebug[0m] [0mCopy resource mappings: [0m
-[0m[[0mdebug[0m] [0m	(C:\Users\thomc\Downloads\wacc_docker_play\conf\application.conf,C:\Users\thomc\Downloads\wacc_docker_play\target\scala-2.12\classes\application.conf)[0m
-[0m[[0mdebug[0m] [0m	(C:\Users\thomc\Downloads\wacc_docker_play\conf\logback.xml,C:\Users\thomc\Downloads\wacc_docker_play\target\scala-2.12\classes\logback.xml)[0m
-[0m[[0mdebug[0m] [0m	(C:\Users\thomc\Downloads\wacc_docker_play\conf\routes,C:\Users\thomc\Downloads\wacc_docker_play\target\scala-2.12\classes\routes)[0m
