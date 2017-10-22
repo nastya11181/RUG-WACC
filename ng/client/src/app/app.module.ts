@@ -18,6 +18,9 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { FormsModule } from '@angular/forms';
 import { RegisterFormComponent } from './register-form/register-form.component';
 
+// HttpRequest
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,8 @@ import { RegisterFormComponent } from './register-form/register-form.component';
   imports: [
     BrowserModule,
     googleMapsCore,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
