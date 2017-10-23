@@ -1,6 +1,6 @@
 #  Create a new image from the base nodejs 7 image.
 FROM node:7
-# Create the target directory in the imahge
+# Create the target directory in the image
 RUN mkdir -p /usr/src/app
 # Set the created directory as the working directory
 WORKDIR /usr/src/app
@@ -8,6 +8,7 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app
 # Install required dependencies
 RUN npm install
+RUN npm install --save font-awesome
 # Copy the client application source files. You can use .dockerignore to exlcude files. Works just as .gitignore does.
 COPY . /usr/src/app
 # Open port 4200. This is the port that our development server uses
