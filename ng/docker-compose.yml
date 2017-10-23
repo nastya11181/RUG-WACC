@@ -1,0 +1,31 @@
+version: "2"
+services:
+  play:
+    image: play:latest
+    ports:
+      - 9000:9000
+    stdin_open: true
+    links:
+      - mongodb
+  mongodb:
+    image: mongo:latest
+    environment:
+      - MONGO_DATA_DIR=/data/db
+#      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - /data/db:/data/db
+  mongo_seed:
+    image: mongo_seed
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+  nginx:
+    image: nginx:my
+    links:
+      - client
+      - play
+    ports:
+      - 80:80
+  client:
+    image: client:latest

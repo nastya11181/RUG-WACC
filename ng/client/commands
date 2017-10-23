@@ -1,0 +1,5 @@
+// Install bootstrap
+npm install bootstrap@3.3.7
+change version in package and run 'npm install'
+
+//
