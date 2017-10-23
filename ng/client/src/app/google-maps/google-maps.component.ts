@@ -15,7 +15,7 @@ export class GoogleMapsComponent implements OnInit {
   ngOnInit() {
   }
     clickedMarker(label: string, index: number){
-     console.log('clicked the marker ${label||index}')
+     console.log('clicked the marker ' + index + ' ' + label)
    }
 
 
@@ -25,13 +25,13 @@ export class GoogleMapsComponent implements OnInit {
        lat: 47.0345,
        lng: 29,
        label: 'A',
-       draggable: true
+       draggable: true,
      },
      {
        lat: 46.982,
        lng: 28.84476,
        label: 'B',
-       draggable: false
+       draggable: false,
      }
    ];
  }

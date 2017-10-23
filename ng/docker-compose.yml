@@ -1,26 +1,31 @@
-# for now, it's version 2. with version 3, it'll be possible to enable swarm mode
-version: '2'
- # services are different containers that we have
+version: "2"
 services:
-# Build the client container using the pre-built image / Dockerfile
-  client:
-    image: client:cl 
-#      build: ./client
-    networks:
-      - webnet
-
-# Build the nginx container using the nginx Dockerfile
-  nginx:
-    build: ./nginx
-# Map Nginx port 80 to the local machine's port 80
+  play:
+    image: play:latest
     ports:
-      - "80:80"
-# Link the client container so that Nginx will have access to it
+      - 9000:9000
+    stdin_open: true
+    links:
+      - mongodb
+  mongodb:
+    image: mongo:latest
+    environment:
+      - MONGO_DATA_DIR=/data/db
+#      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - /data/db:/data/db
+  mongo_seed:
+    image: mongo_seed
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+  nginx:
+    image: nginx:my
     links:
       - client
-    networks:
-      - webnet
-# default network
-networks:
-  webnet:
-
+      - play
+    ports:
+      - 80:80
+  client:
+    image: client:latest

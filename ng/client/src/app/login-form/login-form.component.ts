@@ -18,7 +18,7 @@ export class LoginFormComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit():void {
-    this.http.get('https://api//bikes')
+    this.http.get('http://play:9000/api/bikes')
       .subscribe(bikes => {
       console.log(bikes);
     });
