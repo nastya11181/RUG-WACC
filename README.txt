@@ -15,6 +15,13 @@ cd ..
 docker-compose build
 docker-compose up
 
+3. go to localhost:80
+(you should see the angular app)
+
+if you go to localhost:80/api/bikes
+you will get all the bikes in json
+
+
 
 
 
