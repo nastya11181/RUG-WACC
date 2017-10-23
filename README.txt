@@ -1,3 +1,27 @@
+1. create all the necessary docker images locally:
+
+cd play
+docker build -t "play" .
+cd ../mongo
+docker build -t "mongo_seed" .
+cd ../nginx
+docker build -t "nginx:my" .
+cd ../ng/client
+docker build -t "client" .
+
+2. run it with docker-compose
+
+cd ..
+docker-compose build
+docker-compose up
+
+
+
+
+
+
+
+--------------------------------------------------(that's the old version of readme)-------------------------------------------
 Prerequisites
  - Make sure you have NPM installed on your system
  - Install AngularCLI
