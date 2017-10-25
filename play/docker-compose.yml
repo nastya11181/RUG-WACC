@@ -2,7 +2,7 @@ version: "2"
 services:
   play:
     image: play:latest
-    ports:
+    ports: 
       - 9000:9000
     stdin_open: true
     links:
@@ -16,7 +16,7 @@ services:
       - /data/db:/data/db
   mongo_seed:
     image: mongo_seed
-    links:
+    links: 
       - mongodb
     depends_on:
       - mongodb
@@ -29,3 +29,6 @@ services:
       - 80:80
   client:
     image: client:latest
+
+
+
