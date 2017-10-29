@@ -1,19 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
+
+
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-google-maps',
   templateUrl: './google-maps.component.html',
   styleUrls: ['./google-maps.component.css']
 })
+
+@Injectable()
 export class GoogleMapsComponent implements OnInit {
 
-  constructor() { }
-  lat: number = 47.0105;
-  long: number = 28.8638;
-  zoom: number = 10;
+  constructor(private http: HttpClient) { }
+  lat: number = 53.22;
+  long: number = 6.55;
+  zoom: number = 12;
   draggable: boolean = true;
-  ngOnInit() {
+
+  private url: string = 'api/bikes';
+  bikeMarkers;
+  ngOnInit():void {
+    this.http.get(this.url)
+      .subscribe(bikes => {
+
+        this.bikeMarkers = bikes;
+        console.log(this.bikeMarkers);
+    });
+
+
   }
+
+
+
+
     clickedMarker(label: string, index: number){
      console.log('clicked the marker ' + index + ' ' + label)
    }
@@ -22,23 +42,28 @@ export class GoogleMapsComponent implements OnInit {
 
    markers: marker[] = [
      {
-       lat: 47.0345,
-       lng: 29,
-       label: 'A',
-       draggable: true,
-     },
-     {
-       lat: 46.982,
-       lng: 28.84476,
-       label: 'B',
-       draggable: false,
+       id:{
+         $oid: "2j23g4j21k3",
+       },
+       coords:{
+          x: 43.2342,
+          y: 12.3745,
+       },
+       status: true
+
      }
    ];
+
+
  }
 
  interface marker {
-   lat: number;
-   lng: number;
-   label: string;
-   draggable: boolean;
+   id:{
+     $oid: string;
+   }
+   coords:{
+     x: number;
+     y: number;
+   }
+   status: boolean;
  }

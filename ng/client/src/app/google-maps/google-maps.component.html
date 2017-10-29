@@ -1,13 +1,13 @@
 <sebm-google-map
       [latitude]="lat"
-      [longitude]="long">
+      [longitude]="long"
+      [zoom] ="zoom">
       <sebm-google-map-marker
-        *ngFor="let m of markers; let i = index"
-        (markerClick)="clickedMarker(m.label, i)"
-        [latitude]="m.lat"
-        [longitude]="m.lng"
-        [label]="m.label"
-        [markerDraggable]="m.draggable"
+        *ngFor="let m of bikeMarkers; let i = index"
+        (markerClick)="clickedMarker(m.id.$oid, i)"
+        [latitude]="m.coords.x"
+        [longitude]="m.coords.y"
+        [markerDraggable]="m.status"
         (dragEnd)="markerDragEnd(m, $event)">
         <sebm-google-map-info-window>
          <strong>InfoWindow content</strong>
