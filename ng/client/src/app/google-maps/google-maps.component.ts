@@ -29,25 +29,44 @@ export class GoogleMapsComponent implements OnInit {
 
 
   private url: string = 'api/bikes';
-  bikeMarkers;
+  private bikeMarkers: marker[];
   ngOnInit():void {
-    this.http.get(this.url)
+    this.http.get<marker[]>(this.url)
       .subscribe(bikes => {
-
         this.bikeMarkers = bikes;
         console.log(this.bikeMarkers);
+        console.log(this.bikeMarkers.length);
+
+        for(let i of this.bikeMarkers)
+        {
+          if(i.status)
+          {
+            console.log(this.getAddress(i.coords.x,i.coords.y));
+          }
+        }
+
     });
-    this.getAddress();
+
+
+    this.getAddress(53.22,6.55);
     }
+    /*
+    createTable():void{
+      for(var i=0; i<this.bikeMarkers.length; i++)
+      {
+        console.log(i);
+        //console.log(this.bikeMarkers[i].coords.x,this.bikeMarkers[i].coords.y);
+      }
+    }
+    */
 
-
-    getAddress(): void {
-        this.geoService.getLocation(53.22,6.55)
+    getAddress(lat:number,lng:number): void {
+        this.geoService.getLocation(lat,lng)
             .subscribe((response) => {
               this.result = response.results[0];
-              console.log(this.result);
-            })
 
+              console.log(this.result.formatted_address);
+            })
           }
 
 
