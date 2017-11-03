@@ -19,4 +19,3 @@ In our project we use an external third party service. The service of Google is 
 \subsection{Docker swarm}
 
 Docker swarm is a tool that enables high scalability and fault-tolerance. With Docker swarm, it is possible to run applications on a cluster of virtual or physical machines. If one of the nodes or one of the containers fails the other keep functioning and can handle the requests that are send to them. For every service, there are two modes available, global and replicated. If  the replicated mode is used, the user can define the number of replicas of each container. If the global mode is used, every node in the cluster runs one instance of the service. In our application, we use global mode for all the services, which means that if we run our application on two (virtual) machines, each machine will have one instance of every service running on it.
- 
