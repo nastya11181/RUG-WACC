@@ -1,4 +1,6 @@
-<sebm-google-map
+<div class="container">
+  <div class="map">
+    <sebm-google-map
       [latitude]="lat"
       [longitude]="long"
       [zoom] ="zoom">
@@ -14,4 +16,16 @@
         </sebm-google-map-info-window>
 
         </sebm-google-map-marker>
- </sebm-google-map>
+      </sebm-google-map>
+    </div>
+ <div class="table">
+   <tr>
+     <th>Bike Address</th>
+     <th> Select Bike</th>
+   </tr>
+   <tr *ngFor="let bikey of bikeys;let counter of numbers">
+     <td>{{bikey.address}}</td>
+     <td><button (click)="selectBike(bikey)">Select me!</button></td>
+   </tr>
+ </div>
+</div>

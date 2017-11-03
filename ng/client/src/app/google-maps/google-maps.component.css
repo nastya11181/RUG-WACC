@@ -1,5 +1,15 @@
 .sebm-google-map-container {
-   height: 500px;
-   width: 500px;
-   align: center;
+   height: 550px;
+   width: 550px;
+   align: left;
+ }
+
+
+ .map{
+   float: left;
+   width: 60%;
+ }
+ .table{
+   float: right;
+   width: 40%;
  }
