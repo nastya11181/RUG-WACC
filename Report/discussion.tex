@@ -2,16 +2,15 @@
 
 In this chapter we review and reflect on the project.
 
-In the beginning of the project we started with developing an UI. We used a nginx webserver, but we struggled to put it in a docker container en connect it to the back-end. It took us some time to figure it out how exactly to connect these parts. We managed to retrieve data from the database and to present it in the UI. We chose to use AngularJS as a framework for our UI. 
+In the beginning of the project we started with developing an UI. We used a nginx webserver, but we struggled to put it in a docker container and connect it to the back-end. It took us some time to figure it out how exactly to connect these parts. We managed to retrieve data from the database and to present it in the UI. We chose to use Angular as a framework for our UI.
 
-It took us some time to set up the back-end with Play and Scala. Since the programming language Scala was new to all of us, we had to put some effort into it to understand how Scala works. 
-
+It took us some time to set up the back-end with Play and Scala. Since the programming language Scala was new to all of us, we had to put some effort into it to understand how Scala works.
+\subsection{Angular}
+Angular proved to be the easiest component of the project.  However not everything was straight-forward. One tricky part was using Ajax calls to retrieve information about available bikes and displaying it. We needed a little more time than expected to use the values from \it{.subscribe()} in some other function.
 \subsection{Scala}
-Discuss difficulties of Scala
-
+Scala was completely new for all of us. We were lucky enough to find a project that had some similar functionalities. Using that project as a guideline, we implemented a part of our own back-end functionality that communicates with front-end and the database. The biggest issues we encountered at using Scala was implementing WebSockets.
 \subsection{Docker}
 Explain difficulties of docker and/or swarm
 
 \subsection{Future work}
-One important part of the project that is missing is the login and register part for users of the application. Users should be able to create an account and to login. When a user is logged in, they can rent a bike and see their history of rented bikes. Due to the difficulties we encountered there was not enough time to implement this correctly. 
-
+One important part of the project that is missing is the login and register part for users of the application. Users should be able to create an account and to login. When a user is logged in, they can rent a bike and see their history of rented bikes. Due to the difficulties we encountered there was not enough time to implement this correctly.
