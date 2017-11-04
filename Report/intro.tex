@@ -1,4 +1,6 @@
 \section{Introduction}
 
-The application will represent a map on which positions of bikes will be shown. These bikes are used by people
-for transportation. The initial implementation idea was the following: when a bike is taken, it’s corresponding point on the map disappears (because it is no longer available). Bike's marker on the map would be visible only to the user who reserved the bike and the position would be updated every 10 seconds to help user arrive at the final destination easier. The second implementation plan consisted of the following: all the bikes will be shown on the map, however only the available ones will be shown in the table nearby. The distinction between a free bicycle and a selected one would be the color and/or the shape of the marker on the map. When the trip is finished the bike appears back on the map as before. For every bike, there will be a usage history available.
+In this project we developed a single page web application "Uber for bikes". The application should enable the Uber functionality for bikes.
+
+The application represents a map on which the positions of bikes are shown. These bikes are used by people
+for transportation. The users can also see the table with the address information about the bikes. This coordinates of the bikes are streamed from the database and then transformed into addresses using the Google Maps API. The user can book a bike by pressing the corresponding button. When a bike is taken, its corresponding point on the map disappears (because it is no longer available) for all users except the user who reserved it. For that user the marker will be updated every 10 seconds in order to help user reach end-point easier. When the trip is finished the bike appears back on the map. 

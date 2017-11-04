@@ -4,12 +4,31 @@
 We use MongoDB for our database. We chose to use this database as it is easy to implement and easy to use. We have
 a MongoDB database with 1 collection, Bikes. The Bikes collection stores all bike locations and their availability. There should be a second database collection, Users, for storing the name, passwords and a list of rented bikes. Due to lack of time, we weren't able to implement this correctly.
 
-
     \begin{figure}[H]
 		\centering
 		\includegraphics[width=0.4\textwidth]{images/db-structure.png}
 		\caption{Overview of the database}
 		\label{database}
+	\end{figure}
+
+
+In the docker swarm mode, the Mongo replica set is used to enable sharing of the data between the instances of MongoDB on different hosts. Replica sets provide redundancy and increase the availability of the data. All write operations are performed to the primary node and then replicated to the secondary nodes, as shown in \autoref{repl}.
+
+    \begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{images/replication.png}
+		\caption{Replica sets in MongoDB}
+		\label{repl}
+	\end{figure}
+
+
+As opposed to the other services that are deployed in the docker swarm mode, MongoDB needs some additional configuration. Docker cannot take care of initializing the replica set and making sure that the data is correctly replicated among different nodes. This means that we have to manage the replica set by ourselves. If the replica set is configured manually there is a high risk that if one of the MongoDB instances goes down and appears again, its IP address will be different and the replica set will need to be reconfigured (the new IP address of the node should be added and the old one removed). This may cause the read and write operations to fail, which is not what we want. So we have found a way to deal with this problem. We have a separate container (called controller) that maintains the replica set up and running and updates the configuration whenever necessary.  This container does not need replication and is deployed only once on the manager node. So the backend, when deployed in the swarm mode, looks as it is represented in \autoref{backend}.
+
+    \begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{images/backend.png}
+		\caption{MongoDB replication in docker swarm mode}
+		\label{repl}
 	\end{figure}
 
 
