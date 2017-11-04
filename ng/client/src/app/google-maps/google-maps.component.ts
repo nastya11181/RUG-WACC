@@ -1,9 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
-
 import { GeoService } from './GeoService';
-
 import {Observable} from 'rxjs/Observable';
 
 @Component({
@@ -20,15 +17,13 @@ export class GoogleMapsComponent implements OnInit {
   constructor(private http: HttpClient, private geoService: GeoService) {
 
    }
+  //Groningen coordinates
   lat: number = 53.22;
   long: number = 6.55;
   zoom: number = 12;
   draggable: boolean = true;
 
   result;
-
-
-
   private url: string = 'api/bikes';
   private bikeMarkers: marker[];
   private bikeys = [];
@@ -48,7 +43,6 @@ export class GoogleMapsComponent implements OnInit {
           {
             this.getAddress(i.coords.x,i.coords.y).subscribe(val =>
             {
-              //console.log(this.bikey);
               this.bikey = {
                 id: i.id.$oid,
                 address: val,
@@ -59,39 +53,20 @@ export class GoogleMapsComponent implements OnInit {
               }
 
               this.bikeys.push(this.bikey);
-              //console.log("Log all bikes");
-              //console.log(this.bikeys);
             });
           }
         }
     });
 
-    /*
-    this.getAddress(53.22,6.55).subscribe(val => {
-      console.log(val);
-    });
 
-    let btn = document.getElementsByClassName("coolbutton");
-    btn.addEventListener("click",(e:Event)=>{
-      console.log("Pressed some button");
-    })
-    */
     }
     selectBike(mickey: id_ad_co):void{
       var body = {id : mickey.address,coords: mickey.coords};
-      console.log("Set bike with " + mickey.address + " id availability to 'false'");
-      this.http.post(this.url+"/"+mickey.id, body).subscribe();
+
       //http call to update but status from free to reserved;
+      this.http.post(this.url+"/"+mickey.id, body).subscribe();
     }
-    /*
-    createTable():void{
-      for(var i=0; i<this.bikeMarkers.length; i++)
-      {
-        console.log(i);
-        //console.log(this.bikeMarkers[i].coords.x,this.bikeMarkers[i].coords.y);
-      }
-    }
-    */
+
 
     getAddress(lat:number,lng:number): Observable<string> {
       return this.geoService.getLocation(lat,lng)
@@ -100,26 +75,11 @@ export class GoogleMapsComponent implements OnInit {
         })
       }
 
-
+      /*
     clickedMarker(label: string, index: number){
      console.log('clicked the marker ' + index + ' ' + label)
    }
-
-
-
-   markers: marker[] = [
-     {
-       id:{
-         $oid: "2j23g4j21k3",
-       },
-       coords:{
-          x: 43.2342,
-          y: 12.3745,
-       },
-       status: true
-
-     }
-   ];
+*/
 
 
  }
