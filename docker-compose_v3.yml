@@ -1,0 +1,97 @@
+version: '3.2'
+
+services:      
+  mongo:
+    image: mongo:${MONGO_VERSION:-3.2}
+    entrypoint: [ "/usr/bin/mongod", "--replSet", "${REPLICASET_NAME:-rs}", "--journal", "--smallfiles"]
+    ports:
+      - "27017:27017"
+    # The usage of volume provides persistence, but may work correctly only with 1 volume per node (that's why global mode is recommended)
+    volumes:
+      - mongodata:/data/db
+      - /home/docker/init.json:/init.json
+    networks:
+      - uber
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+      update_config:
+        parallelism: 1
+        delay: 1m30s
+
+  controller:
+    image: martel/mongo-replica-ctrl:latest
+    volumes:
+      # TODO: Avoid exposing the docker socket (security issue)
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - OVERLAY_NETWORK_NAME=${OVERLAY_NETWORK_NAME:-uber}
+      - MONGO_SERVICE_NAME=${STACK_NAME:-uber}_mongo
+      - REPLICASET_NAME=${REPLICASET_NAME:-rs}
+      - MONGO_PORT=27017
+          # - DEBUG=1 #uncomment to debug the script
+    entrypoint: python /src/replica_ctrl.py
+    networks:
+        - uber
+    depends_on:
+        - "mongo"
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+
+  play:
+    image: nastya11181/play:mongo
+    deploy:
+#      replicas: 2
+      mode: global
+      restart_policy:
+        condition: on-failure
+    ports:
+      - 9000:9000
+    stdin_open: true
+    networks:
+      - uber
+
+
+
+  nginx:
+    image: nastya11181/nginx:my
+    deploy:
+#      replicas: 2
+      restart_policy:
+        condition: on-failure
+      mode: global
+    depends_on:
+      - client
+      - play
+    ports:
+      - 80:80
+    networks:
+      - uber
+
+  client:
+    image: nastya11181/client:latest
+    networks:
+      - uber
+    deploy:
+#      replicas: 2
+      mode: global
+      restart_policy:
+        condition: on-failure
+   
+
+
+
+volumes:
+  # External true ensures that the volume is not re-created if already present
+  mongodata:
+    external: true
+
+networks:
+  uber:
+    external: true
