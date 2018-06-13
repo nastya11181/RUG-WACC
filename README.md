@@ -1,6 +1,6 @@
 Prerequisites: docker-machine and Virtualbox installed
 
-It's possible to deploy the docker stack on tho virtual machines or on a local machine and a virtual machine. In this file we describe the latter option for simplicity.
+It's possible to deploy the docker stack on two virtual machines or on a local machine and a virtual machine. In this file we describe the latter option for simplicity.
 
 1. Create 1 virtual machines with docker-machine
 
